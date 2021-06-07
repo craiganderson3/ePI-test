@@ -1,0 +1,1375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This is a template for a FHIR resource, and needs items (marked with "${}") replacing to make a real instance -->
+<!-- The resulting instance is a Bundle of Bundles, each of which is a document (having a Composition, and supporting resources) -->
+<!-- 2020-02-22 -->
+<!-- This is for FHIR version R5 Preview 2 (May 2020) -->
+<?xml-stylesheet type="text/xsl" href="QRDbundleToHtml.xsl"?>
+<?xml-stylesheet type="text/css" href="QRDbundleToHtml.xsl"?>
+<Bundle xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://hl7.org/fhir ../../FHIR/XML/fhir-all-xsd/fhir-all.xsd"
+	xmlns="http://hl7.org/fhir">
+	<!-- change here 2021-04-09, now a transaction -->
+	<type value="transaction"/>
+	<!-- could include a bundle level timestamp here
+    <timestamp></timestamp> -->
+	<!-- one document bundle list, covers all the documents -->
+	<entry>
+		<fullUrl value="urn:uuid:f239eb55-8a15-4fe1-9331-229921f41610"/>
+		<resource>
+			<List>
+				<status value="current"/>
+				<mode value="working"/>
+				<!-- repeat per document Bundle -->
+				<entry>
+					<item>
+						<!-- matches fullUrl of the Nth Bundle -->
+						<reference value="urn:uuid:5e229d9a-e63e-496b-8166-ea2df203b2e5"/>
+					</item>
+				</entry>
+			</List>
+		</resource>
+		<request>
+			<method value="POST"/>
+			<url value="List"/>
+		</request>
+	</entry>
+	<!-- Repeat this per document -->
+	<!-- Document 1 = zandip SPC English translation -->
+	<entry>
+		<fullUrl value="urn:uuid:5e229d9a-e63e-496b-8166-ea2df203b2e5"/>
+		<!-- Top level of each document is a also FHIR Bundle, of type "document"
+		 see http://hl7.org/fhir/documents.html, http://hl7.org/fhir/bundle.html
+	 	 All the other resources for this document are within this. -->
+		<resource>
+			<Bundle>
+				<!-- When PUTing, some servers mandate an id here to match the existing id -->
+				<!--id value="${instance.bundle[n].idUuid}"/-->
+				<!-- document bundles must have an identifier (bdl-9) -->
+				<identifier>
+					<!-- possibly different identifier types may be needed here -->
+					<system value="http://ema.europa.eu/fhir/identifier/documentid"/>
+					<value value="temp-Norway-zandip1-EN"/>
+					<!-- ACTION: sort out SPOR access -->
+				</identifier>
+				<!-- fixed code -->
+				<type value="document"/>
+				<!-- document bundles must have a date (bdl-10) -->
+				<timestamp value="2021-06-05T10:41:00Z"/>
+				<!-- a repeating set of entry elements, each with a FHIR resource inside -->
+				<entry>
+					<!-- fullUrl is mandatory for each entry in document Bundle. It is a random uuid. http://build.fhir.org/bundle.html#bundle-unique -->
+					<fullUrl value="urn:uuid:8f708a21-0b80-4d87-a187-afe94df9b5cf"/>
+					<resource>
+						<!-- the first resource must be Composition (bdl-11) -->
+						<!-- This is the overall document structure. -->
+						<!-- see definition http://hl7.org/fhir/composition.html, and similar for other resources -->
+						<Composition>
+							<!-- images if required within html text of this document -->
+							<contained>
+								<Binary>
+									<id value="zandip10mg"/>
+									<!-- example format -->
+									<contentType value="image/png"/>
+									<!-- data is base 64 encoded, actual bytes of the image png file -->
+									<data
+										value="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"
+									/>
+								</Binary>
+							</contained>
+							<contained>
+								<Binary>
+									<id value="zandip20mg"/>
+									<!-- example format -->
+									<contentType value="image/png"/>
+									<!-- data is base 64 encoded, actual bytes of the image png file -->
+									<data
+										value="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"
+									/>
+								</Binary>
+							</contained>
+							<!-- this exension is necessary per image -->
+							<extension
+								url="http://ema.europa.eu/fhir/extension/dummyValidationReference">
+								<valueReference>
+									<reference value="#zandip10mg"/>
+								</valueReference>
+							</extension>
+							<extension
+								url="http://ema.europa.eu/fhir/extension/dummyValidationReference">
+								<valueReference>
+									<reference value="#zandip20mg"/>
+								</valueReference>
+							</extension>
+							<status value="final"/>
+							<!-- document type -->
+							<type>
+								<coding>
+									<system value="http://spor.ema.europa.eu/v1/lists/100000155531"/>
+									<code value="100000155532"/>
+									<display value="Summary of Product Characteristics"/>
+								</coding>
+							</type>
+							<subject>
+								<!-- links to the List resource in this bundle - local url format -->
+								<reference value="List/548506e8-130d-40c4-8979-6177c0a96a66"/>
+								<!-- local url format -->
+								<!--reference value="${instance.bundle[n].listUuid}"/-->
+								<!-- uuid url format. Possible alternate format may be neeed -->
+							</subject>
+							<!-- mandatory date of the document -->
+							<date value="2019-02-14"/>
+							<author>
+								<identifier>
+									<system value="http://spor.ema.europa.eu/v1/locations"/>
+									<value value="temp-org1"/>
+									<!-- ACTION - get real org number -->
+								</identifier>
+							</author>
+							<title value="ANNEX 1 - SUMMARY OF PRODUCT CHARACTERISTICS"/>
+							<relatesTo>
+								<code value="transforms"/>
+								<!-- This is the English Translation of the Original Norwegian SmPC. Relate this to the Norwegian SmPC compostion -->
+								<targetReference>
+									<!-- reference to another Composition -->
+									<reference value="${document[n].relatesTo}"/>
+								</targetReference>
+							</relatesTo>
+							<!-- main sections of the document, to follow the QRD template -->
+							<section>
+								<!-- 1. NAME OF THE MEDICINAL PRODUCT -->
+								<title value="1. NAME OF THE MEDICINAL PRODUCT"/>
+								<code>
+									<coding>
+										<!-- sections will all have codes to identify them -->
+										<system
+											value="http://spor.ema.europa.eu/v1/example-sections"/>
+										<code value="00000021212"/>
+										<display value="Name Section"/>
+									</coding>
+								</code>
+								<text>
+									<status value="additional"/>
+									<div xmlns="http://www.w3.org/1999/xhtml">
+										<p>Zanidip 10 mg film-coated tablets</p>
+									</div>
+								</text>
+							</section>
+							<section>
+								<!-- 2. QUALITATIVE AND QUANTITATIVE COMPOSITION -->
+								<title value="2. QUALITATIVE AND QUANTITATIVE COMPOSITION"/>
+								<code>
+									<coding>
+										<system
+											value="http://spor.ema.europa.eu/v1/example-sections"/>
+										<code value="00000021212"/>
+										<display value="Composition"/>
+									</coding>
+								</code>
+								<text>
+									<status value="additional"/>
+									<div xmlns="http://www.w3.org/1999/xhtml">
+										<p>Each film-coated tablet contains 10 mg lercanidipine
+											hydrochloride (equivalent to 9.4 mg lercanidipine)</p>
+										<br/>
+										<p>Excipient with known effect:</p>
+										<p>Each film-coated tablet
+											contains 30 mg of lactose monohydrate.</p>
+										<br/>
+										<p>For a complete list of excipients, see section <a
+												href="#61"
+												>6.1</a></p>
+										<!-- ACTION: FINISH LINK -->
+									</div>
+								</text>
+							</section>
+							<section>
+								<!-- 3. PHARMACEUTICAL FORM -->
+								<title value="3. PHARMACEUTICAL FORM"/>
+								<code>
+									<coding>
+										<system
+											value="http://spor.ema.europa.eu/v1/example-sections"/>
+										<code value="00000031313"/>
+										<display value="Form"/>
+									</coding>
+								</code>
+								<text>
+									<status value="additional"/>
+									<div xmlns="http://www.w3.org/1999/xhtml">
+										<p>Tablet, film-coated</p>
+										<p>Yellow, round, biconvex tablet with a dash on one
+											side.</p>
+										<br/>
+										<img src="#zandip10mg"
+											alt="An image of a single Zandip 10 mg tablet"/>
+										<br/>
+										<br/>
+										<img src="#zandip20mg"
+											alt="An image of a single Zandip 20 mg tablet"/>
+									</div>
+								</text>
+							</section>
+							<section>
+								<!-- 4. CLINICAL PARTICULARS -->
+								<title value="4. CLINICAL PARTICULARS"/>
+								<code>
+									<coding>
+										<system
+											value="http://spor.ema.europa.eu/v1/example-sections"/>
+										<code value="0000002223333"/>
+										<display value="clinical-particulars"/>
+									</coding>
+								</code>
+								<section>
+									<!-- 4.1 Therapeutic indications -->
+									<title value="4.1 Therapeutic indications"/>
+									<code>
+										<coding>
+											<system
+												value="http://spor.ema.europa.eu/v1/example-sections"/>
+											<code value="00000044444"/>
+											<display value="Therapeutic Indications"/>
+										</coding>
+									</code>
+									<text>
+										<status value="additional"/>
+										<div xmlns="http://www.w3.org/1999/xhtml">
+											<p>Zanidip is indicated in adults for the treatment of
+												mild to moderate essential hypertension.</p>
+										</div>
+									</text>
+								</section>
+								<section>
+									<!-- 4.2 Posology and method of administration -->
+									<title value="4.2 Posology and method of administration"/>
+									<code>
+										<coding>
+											<system
+												value="http://spor.ema.europa.eu/v1/example-sections"/>
+											<code value="0000005555"/>
+											<display value="Posology"/>
+										</coding>
+									</code>
+									<text>
+										<status value="additional"/>
+										<div xmlns="http://www.w3.org/1999/xhtml">
+											<p style="bold">Dosage</p>
+											<p>The recommended dose is 10 mg once daily at least 15
+												minutes before a meal. The dose can be increased to
+												20 mg,depending on individual response.Dose increase
+												should be gradual because it may take up to two
+												weeks before the maximum antihypertensive effect is
+												reachedachieved. In people where monotherapy does
+												not give a satisfactory effect, it may be beneficial
+												to combineZanidip with a beta-blocker (atenolol), a
+												diuretic (hydrochlorothiazide) or an ACE
+												inhibitor(captopril or enalapril).As the
+												dose-response curve is steep with a plateau at doses
+												between 20-30 mg, it is unlikely thatthe effect is
+												increased at higher doses. However, the frequency of
+												side effects may increase.</p>
+											<br/>
+											<p>Older</p>
+											<p>Although pharmacokinetic data and clinical experience
+												suggest that daily adjustment is not requireddosage,
+												caution should be exercised when starting
+												treatment.</p>
+											<br/>
+											<p>Pediatric population</p>
+											<p>The safety and efficacy of Zanidip in children up to
+												18 years of age have not been established. There is
+												noneavailable data.</p>
+											<br/>
+											<p>Impaired renal or hepatic function</p>
+											<p>Caution should be exercised when starting treatment
+												in patients with mild to moderate renal or renal
+												impairmentliver function. Although commonly
+												recommended doses can be tolerated by these
+												patients, shoulddose increase to 20 mg daily should
+												be done with caution. The antihypertensive effect
+												may be enhanced inpatients with hepatic impairment.
+												Therefore, dose adjustment should be considered.</p>
+											<br/>
+											<p>Zanidip is contraindicated in patients with severe
+												hepatic impairment or in patients withsevere renal
+												impairment (GFR &lt;30 ml / min), including patients
+												undergoing dialysis (see section <a href="#XXXXXXX"
+												>4.3</a> and <a href="#XXXXXX">4.4</a>).</p>
+											<br/>
+											<p>Method of administration</p>
+											<p>Precautions before handling or administering this
+												medicine:</p>
+											<ul>
+												<li>The treatment should preferably be given in the
+												morning, at least 15 minutes before
+												breakfast.</li>
+												<li>This medicine should not be given with
+												grapefruit juice (see section <a href="#XXXXXXX"
+												>4.3</a> and <a href="#XXXXXX">4.5</a>).</li>
+											</ul>
+										</div>
+									</text>
+								</section>
+								<section>
+									<!-- 4.3 Contraindications -->
+									<title value="4.3 Contraindications"/>
+									<code>
+										<coding>
+											<system
+												value="http://spor.ema.europa.eu/v1/example-sections"/>
+											<code value="0"/>
+											<display value="Contraindications"/>
+										</coding>
+									</code>
+									<text>
+										<status value="additional"/>
+										<div xmlns="http://www.w3.org/1999/xhtml">
+											<ul>
+												<li>Hypersensitivity to the active substance or to
+												any of the excipients listed in <a href="#XXXX"
+												>section 6.1</a>.</li>
+												<li>Left ventricular obstruction</li>
+												<li>Untreated congestive heart failure.</li>
+												<li>Unstable angina pectoris or recent (less than 1
+												month) heart attack</li>
+												<li>Severe hepatic impairment.</li>
+												<li>Severe renal impairment (GFR &lt;30 ml / min),
+												including patients undergoing
+												surgeryhemodialysis.</li>
+												<li>Simultaneous administration of:</li>
+												<ul list-style-type="circle">
+												<li>strong CYP3A4 inhibitors (see <a
+												href="#xxxxxx">section 4.5</a>)</li>
+												<li>ciclosporin (see <a href="#xxxxxx">section
+												4.5</a>)</li>
+												<li>grapefruit or grapefruit juice (see <a
+												href="#xxxxxx">section 4.5</a>)</li>
+												</ul>
+											</ul>
+										</div>
+									</text>
+								</section>
+								<section>
+									<!-- 4.4 Special warnings and precautions for use -->
+									<title value="4.4 Special warnings and precautions for use"/>
+									<code>
+										<coding>
+											<system
+												value="http://spor.ema.europa.eu/v1/example-sections"/>
+											<code value="1"/>
+											<display value="special warnings"/>
+										</coding>
+									</code>
+									<text>
+										<status value="additional"/>
+										<div xmlns="http://www.w3.org/1999/xhtml">
+											<p>Sick sinus syndrome</p>
+											<p>Caution should be exercised when using lercanidipine
+												in patients with sick sinus syndrome (who have not
+												pacemaker).</p>
+											<br/>
+											<p>Left ventricular dysfunction</p>
+											<p>Caution should also be exercised when treating
+												patients with impaired left ventricular function,
+												even if controlled hemodynamic studies have not
+												shown deterioration of ventricular function. </p>
+											<br/>
+											<p>Ischemic heart disease</p>
+											<p>Certain short-acting dihydropyridine derivatives may
+												be associated with an increased cardiovascular risk
+												in patients patients with ischemic heart disease.
+												Although lercanidipine is long-acting, caution
+												should be exercised expelled in the treatment of
+												these patients. Some dihydropyridines may in rare
+												cases lead to precordial pain or angina pectoris.
+												Patients with pre-existing angina pectoris may in
+												very rare cases cases get attacks with increased
+												frequency, duration or severity. Isolated cases of
+												myocardial infarction can be observed (see <a
+												href="#xxxxx">section 4.8</a>).</p>
+											<br/>
+											<p>Use in renal or hepatic impairment</p>
+											<p>Particular caution should be exercised when
+												initiating treatment in patients with mild to
+												moderaterenal impairment. Although the usually
+												recommended dose, 10 mg daily, can be tolerated, one
+												shoulddose increase to 20 mg daily should be done
+												with caution.</p>
+											<p>The antihypertensive effect may be potentiated in
+												patients with moderate hepatic impairment.Therefore,
+												dose adjustment should be considered</p>
+											<p>Lercanidipine is contraindicated in patients with
+												severe hepatic impairment, or in patientswith severe
+												renal impairment (GFR &lt;30 ml / min), including
+												patients undergoing surgeryhemodialysis (see
+												sections <a href="#xxxx">4.2</a> and <a href="#xxxx"
+												>4.3</a>).</p>
+											<br/>
+											<p>Peritoneal dialysis</p>
+											<p>Lercanidipine has been associated with the
+												development of obscurity in peritoneal dialysate in
+												patients whoundergoing peritoneal dialysis. These
+												turbidities are due to increased concentrations of
+												triglycerides inthe peritoneal fluid. Although the
+												mechanism is unknown, the turbidity tends to
+												disappear after discontinuation oflerkanidipine. It
+												is important to know this relationship as cloudy
+												dialysate can be mistakenly perceived asinfectious
+												peritonitis with subsequent unnecessary
+												hospitalization and empirical administration
+												ofantibiotics.</p>
+											<br/>
+											<p>CYP3A4 inducers</p>
+											<p>CYP3A4 inducers such as anticonvulsants (eg
+												phenytoin, carbamazepine) and rifampicin may
+												reducethe plasma concentration of lercanidipine, and
+												thus the effect of lercanidipine may be weaker
+												thanexpected (see section <a href="#xxxx"
+												>4.5</a>).</p>
+											<br/>
+											<p>Alcohol</p>
+											<p>Alcohol should be avoided during treatment, as
+												alcohol may potentiate the effect of
+												vasodilatorsantihypertensive (see section <a
+												href="#xxxx">4.5</a>).</p>
+											<br/>
+											<p>Lactose</p>
+											<p>This medicine contains lactose. Patients with rare
+												hereditary problems ofgalactose intolerance, total
+												lactase deficiency or glucose-galactose
+												malabsorption should not be taken the drug.</p>
+											<br/>
+											<p>Pediatric population</p>
+											<p>The safety and efficacy of lercanidipine have not
+												been established in children.</p>
+										</div>
+									</text>
+								</section>
+								<section>
+									<!-- 4.5 Interaction with other medicinal products and other forms of interaction -->
+									<title
+										value="4.5 Interaction with other medicinal products and other forms of interaction"/>
+									<code>
+										<coding>
+											<system
+												value="http://spor.ema.europa.eu/v1/example-sections"/>
+											<code value="2"/>
+											<display value="interaction"/>
+										</coding>
+									</code>
+									<text>
+										<status value="additional"/>
+										<div xmlns="http://www.w3.org/1999/xhtml">
+											<p style="font-weight: bold">Contraindications to
+												concomitant use</p>
+											<p>CYP3A4 inhibitors</p>
+											<p>Lercanidipine is metabolised by the CYP3A4 enzyme and
+												therefore co-administration of inhibitorsof CYP3A4
+												affect the metabolism and elimination of
+												lercanidipine. An interaction study with apowerful
+												CYP3A4 inhibitor, ketoconazole, showed a significant
+												increase in plasma levels of lercanidipine (a15-fold
+												increase in AUC and 8-fold increase in C max , of
+												eutomeric S-lercanidipine).Administration of
+												lercanidipine with CYP3A4 inhibitors (eg
+												ketoconazole, itraconazole,ritonavir, erythromycin,
+												troleandomycin, clarithromycin) should be avoided
+												(see section 4.3).</p>
+											<br/>
+											<p>Ciclosporin</p>
+											<p>Increased plasma concentrations of both lercanidipine
+												and ciclosporin have been observed
+												concomitantlyadministration. A study of healthy
+												volunteers has shown that when ciclosporin was
+												administered 3 hours laterintake of lercanidipine,
+												plasma levels of lercanidipine were not altered, but
+												the AUC of ciclosporin increasedby 27%. However,
+												co-administration of lercanidipine and ciclosporin
+												has resulted in a 3-fold increaseof plasma levels of
+												lercanidipine and a 21% increase in the AUC of
+												ciclosporin.Ciclosporin and lercanidipine must not
+												be co-administered (see section <a href="#xxxx"
+												>4.3</a>).</p>
+											<br/>
+											<p>Grapefruit or grapefruit juice</p>
+											<p>As with other dihydropyridines, lercanidipine is
+												sensitive to metabolic inhibition caused byof
+												grapefruit or grapefruit juice. This can lead to
+												increased systemic availability and increased
+												hypotensioneffect. Lercanidipine must not be taken
+												with grapefruit or grapefruit juice (see section <a
+												href="#xxxx">4.3</a>).</p>
+											<br/>
+											<p style="font-weight: bold">Concomitant use is not
+												recommended</p>
+											<p>CYP3A4 inducers</p>
+											<p>Co-administration of lercanidipine and CYP3A4
+												inducers as antiepileptic drugs (eg
+												phenytoin,phenobarbital, carbamazepine) and
+												rifampicin should be done with caution, as the
+												antihypertensivethe effect may be reduced and blood
+												pressure should be monitored more frequently than
+												normal (see section <a href="#xxxx">4.4</a>).</p>
+											<br/>
+											<p>Alcohol</p>
+											<p>Alcohol should be avoided as it may potentiate the
+												effect of vasodilating antihypertensives (see
+												section <a href="#xxxx">4.4</a>).</p>
+											<br/>
+											<p style="font-weight: bold">Precautions, including dose
+												adjustments</p>
+											<p>CYP3A4 substrates</p>
+											<p>Caution should be exercised when administering
+												lercanidipine with other CYP3A4 substrates, such
+												asterfenadine, astemizole, class III antiarrhythmics
+												such as amiodarone, as well as quinidine and
+												sotalol.</p>
+											<br/>
+											<p>Midazolam</p>
+											<p>When a dose of 20 mg lercanidipine was
+												co-administered with midazolam orally to elderly
+												volunteerssubjects, increased the absorption of
+												lercanidipine by approx. 40%, and the rate of
+												absorption was reduced(t max was delayed from 1.75
+												to 3 hours). The concentration of midazolam did not
+												change.</p>
+											<p>Metoprolol</p>
+											<p>When lercanidipine was co-administered with
+												metoprolol, a beta-blocker that mainlyeliminated by
+												the liver, the bioavailability of metoprolol was not
+												altered, while lercanidipinebioavailability was
+												reduced by 50%. This effect may be due to the
+												reducedthe blood flow in the liver caused by
+												beta-blockers, and can therefore also occur
+												withother drugs in this group. Therefore,
+												lercanidipine can be safely co-administered with
+												beta-adrenoceptor receptors.blocking drugs, but dose
+												adjustment may be necessary.</p>
+											<br/>
+											<p>Digoxin</p>
+											<p>Co-administration of 20 mg lercanidipine to patients
+												chronically treated with β-methyldigoxine no
+												pharmacokinetic interaction was observed. However,
+												one was observedmean increase of 33% of C max for
+												digoxin, whereas AUC and renal clearance were
+												notsignificantly changed. Patients receiving
+												concomitant digoxin treatment should be closely
+												monitored forclinical signs of digoxin toxicity.</p>
+											<br/>
+											<p style="font-weight: bold">Concomitant use with other
+												drugs</p>
+											<p>Fluoxetine</p>
+											<p>An interaction study with fluoxetine (an inhibitor of
+												CYP2D6 and CYP3A4), performed involunteers aged 65 ±
+												7 years (mean ± sd), showed no clinically relevant
+												change inpharmacokinetics of lercanidipine.</p>
+											<br/>
+											<p>Cimetidine</p>
+											<p>Co-administration of a daily dose of cimetidine 800
+												mg did not cause any significant changesof
+												lercanidipine plasma levels, but caution should be
+												exercised at higher doses, asthe bioavailability and
+												blood pressure lowering effect of lercanidipine may
+												increase.</p>
+											<br/>
+											<p>Simvastatin</p>
+											<p>When a dose of 20 mg lercanidipine was
+												co-administered with 40 mg simvastatin
+												repeatedly,there were no significant changes in the
+												AUC of lercanidipine, but the AUC of simvastatin
+												increased by 56%and the active major metabolite of
+												simvastatin beta-hydroxy acid increased by 28%. It
+												is not likely thatthese changes are clinically
+												relevant. No interactions are expected with
+												lercanidipineadministered in the morning and
+												simvastatin in the evening, as indicated for such a
+												drug.</p>
+											<br/>
+											<p>Diuretics and other ACE inhibitors</p>
+											<p>Lercanidipine can be safely administered with
+												diuretics and ACE inhibitors.</p>
+											<br/>
+											<p>Other medicines that affect blood pressure</p>
+											<p>As with all antihypertensives, an increased
+												hypotensive effect may be observed when
+												lercanidipine is administeredtogether with other
+												medicines that affect blood pressure, such as alpha
+												blockers for the treatment ofurinary tract symptoms,
+												tricyclic antidepressants and neuroleptics.</p>
+											<br/>
+											<p>On the other hand, a reduction in the hypotensive
+												effect can be observed with concomitant use
+												ofcorticosteroids.</p>
+										</div>
+									</text>
+								</section>
+								<section>
+									<!-- 4.6 Fertility, pregnancy and lactation -->
+									<title value="4.6 Fertility, pregnancy and lactation"/>
+									<code>
+										<coding>
+											<system
+												value="http://spor.ema.europa.eu/v1/example-sections"/>
+											<code value="46"/>
+											<display value="fertility"/>
+										</coding>
+									</code>
+									<text>
+										<status value="additional"/>
+										<div xmlns="http://www.w3.org/1999/xhtml">
+											<p style="font-weight: bold">Pregnancy</p>
+											<p>There are no data on the use of lercanidipine in
+												pregnant women. Animal studies withlercanidipine has
+												not shown teratogenic effects (see section 5.3), but
+												this has been observed with otherdihydropyridine
+												compounds. Lercanidipine is not recommended during
+												pregnancy and in women of childbearing potentialage
+												not using contraception.</p>
+											<br/>
+											<p style="font-weight: bold">Breastfeeding</p>
+											<p>It is unknown whether lercanidipine / metabolites are
+												excreted in human milk. A risk for newborns /
+												infants such asbreastfeeding can not be ruled out.
+												Lercanidipine should not be used during
+												breast-feeding.</p>
+											<br/>
+											<p style="font-weight: bold">Fertility</p>
+											<p>No clinical data are available on lercanidipine.
+												Reversible biochemical changes in the head
+												ofspermatozoa that can inhibit conception have been
+												reported in some patients treated withchannel
+												blockers. In cases where repeated in vitro
+												fertilization does not succeed and where no other is
+												foundexplanation, the possibility that the cause is
+												calcium channel blockers should be considered.</p>
+										</div>
+									</text>
+								</section>
+								<section>
+									<!-- 4.7 Effects on ability to drive and use machines -->
+									<title value="4.7 Effects on ability to drive and use machines"/>
+									<code>
+										<coding>
+											<system
+												value="http://spor.ema.europa.eu/v1/example-sections"/>
+											<code value="47"/>
+											<display value="effects"/>
+										</coding>
+									</code>
+									<text>
+										<status value="additional"/>
+										<div xmlns="http://www.w3.org/1999/xhtml">
+											<p>Lercanidipine has little effect on the ability to
+												drive or use machines. Care should be takenhowever,
+												dizziness, asthenia, fatigue and, in rare cases,
+												somnolence may occur.</p>
+										</div>
+									</text>
+								</section>
+								<section>
+									<!-- 4.8 Side effects -->
+									<title value="4.8 Side effects"/>
+									<code>
+										<coding>
+											<system
+												value="http://spor.ema.europa.eu/v1/example-sections"/>
+											<code value="48"/>
+											<display value="side effects"/>
+										</coding>
+									</code>
+									<text>
+										<status value="additional"/>
+										<div xmlns="http://www.w3.org/1999/xhtml">
+											<p>Summary of the security profile</p>
+											<p>The safety of lercanidipine at a dose of 10–20 mg
+												once daily has been evaluated in the
+												double-blind,placebo-controlled clinical trials
+												(with 1,200 patients receiving lercanidipine and 603
+												patients receivingreceived placebo) and in
+												active-controlled and uncontrolled long-term
+												clinical trials of a total of 3,676
+												hypertensivepatients receiving lercanidipine.</p>
+											<br/>
+											<p>The most commonly reported adverse reactions in
+												clinical trials and post-marketing experience are:
+												peripheraledema, headache, flushing, tachycardia and
+												palpitations.</p>
+											<br/>
+											<p>List of side effects in tabular form</p>
+											<p>The table below lists the adverse reactions reported
+												in clinical trials and experiencemarketing with a
+												reasonably probable causal link listed in accordance
+												with MedDRAorgan system class and frequency: very
+												common (≥ 1/10), common (≥ 1/100 to &lt;1/10),
+												uncommon(≥ 1/1000 to &lt;1/100), rare (≥ 1/10 000 to
+												&lt;1/1000), very rare (&lt;1/10 000), not known
+												(maynot estimated from the available data). Within
+												each frequency grouping, adverse reactions are
+												observedpresented by decreasing severity.</p>
+											<br/>
+											<table>
+												<thead>
+												<tr>
+												<th>MedDRA organ class system</th>
+												<th>Common</th>
+												<th>Less common</th>
+												<th>Rare</th>
+												<th>Not known</th>
+												</tr>
+												</thead>
+												<tbody>
+												<tr>
+												<td>Disorders inthe immune system</td>
+												<td/>
+												<td/>
+												<td>hypersensitivity</td>
+												<td/>
+												</tr>
+												<tr>
+												<td>Neurologicaldiseases</td>
+												<td>headache</td>
+												<td>dizziness s somnolence, syncope</td>
+												<td/>
+												<td/>
+												</tr>
+												<tr>
+												<td>Heart disease</td>
+												<td>tachycardia,palpitations</td>
+												<td/>
+												<td>angina pectoris</td>
+												<td/>
+												</tr>
+												<tr>
+												<td>Vascular diseases</td>
+												<td>blush</td>
+												<td>hypotension</td>
+												<td/>
+												<td/>
+												</tr>
+												<tr>
+												<td>Gastrointestinaldiseases</td>
+												<td/>
+												<td>dyspepsia,nausea, pain inupper abdomen</td>
+												<td>vomiting, diarrhea</td>
+												<td>gingivalhypertrophy <sup>1</sup>,cloudy
+												dialysate</td>
+												</tr>
+												<tr>
+												<td>Diseases of the liverand bile ducts</td>
+												<td/>
+												<td/>
+												<td/>
+												<td>elevatedtransaminases iserum <sup>1</sup></td>
+												</tr>
+												<tr>
+												<td>Skin andsubcutaneous diseases</td>
+												<td/>
+												<td>rash,itch</td>
+												<td>urticaria</td>
+												<td>angioedema <sup>1</sup></td>
+												</tr>
+												<tr>
+												<td>Diseases inmuscles, connective tissue
+												andskeleton</td>
+												<td/>
+												<td>myalgi</td>
+												<td/>
+												<td/>
+												</tr>
+												<tr>
+												<td>Diseases of the kidney andurinary tract</td>
+												<td/>
+												<td>polyuria</td>
+												<td>pollakiuri</td>
+												<td/>
+												</tr>
+												<tr>
+												<td>General disorders andreactions tothe place of
+												administration</td>
+												<td/>
+												<td>peripheral edema asthenia,fatigue</td>
+												<td>chest pain</td>
+												<td/>
+												</tr>
+												</tbody>
+												<tfoot>
+												<tr><sup>1</sup> side effects from spontaneous
+												post-marketing reporting from around the
+												world</tr>
+												</tfoot>
+											</table>
+											<br/>
+											<p>Description of selected adverse reactions</p>
+											<p>In placebo-controlled clinical trials, the incidence
+												of peripheral edema was 0.9% for lercanidipine 10–20
+												mg and 0.83% for placebo. This frequency reached 2%
+												in the total study population, includinglong-term
+												clinical trials.</p>
+											<br/>
+											<p>Lercanidipine does not appear to have an adverse
+												effect on blood sugar and serum lipid levels.Some
+												dihydropyridines can rarely cause precordial pain or
+												angina pectoris. Patients withexisting angina
+												pectoris can in very rare cases have attacks with
+												increased frequency, duration orseverity. Isolated
+												cases of myocardial infarction can be observed.</p>
+											<br/>
+											<p>Reporting of suspected side effects</p>
+											<p>Reporting of suspected side effects after approval of
+												the drug is important. It makes it possible
+												tomonitor the benefit-risk balance of the drug
+												continuously. Healthcare professionals are
+												encouraged toreport any suspected side effect. This
+												is done via the notification form found on the
+												website of the StateNorwegian Medicines Agency:
+												www.legemiddelverket.no/meldeskjema.</p>
+										</div>
+									</text>
+								</section>
+								<section>
+									<!-- 4.9 Overdose -->
+									<title value="4.9 Overdose"/>
+									<code>
+										<coding>
+											<system
+												value="http://spor.ema.europa.eu/v1/example-sections"/>
+											<code value="6"/>
+											<display value="Overdose"/>
+										</coding>
+									</code>
+									<text>
+										<status value="additional"/>
+										<div xmlns="http://www.w3.org/1999/xhtml">
+											<p>In post-marketing experience with lercanidipine, some
+												cases of overdose have been reportedranges from 30
+												to 40 mg up to 800 mg, including reports of suicide
+												attempts.</p>
+											<br/>
+											<p>Symptoms</p>
+											<p>As with other dihydropyridines, overdose with
+												lercanidipine can be expected to cause
+												severeperipheral vasodilation with marked
+												hypotension and reflex tachycardia. At very high
+												doses canhowever, the peripheral selectivity is lost
+												and it can cause bradycardia and negative inotropic
+												effect.The most common side effects associated with
+												overdose are hypotension, dizziness,headaches and
+												palpitations.</p>
+											<br/>
+											<p>Treatment</p>
+											<p>Clinically significant hypotension requires active
+												cardiovascular measures, e.g. frequent monitoring
+												ofcardiac and respiratory function, elevation of
+												extremities as well as control of circulating fluid
+												volume andexcreted urine volume. Considering the
+												prolonged pharmacological effect of lercanidipine,
+												wood shouldand ev. overdose, the patient's
+												cardiovascular status is monitored for a period of
+												at least 24 hours.</p>
+											<br/>
+											<p>Since the drug has a high protein binding, dialysis
+												is in all probability not effective. In
+												patientswhere moderate to severe intoxication is
+												expected, close monitoring should be instituted.</p>
+										</div>
+									</text>
+								</section>
+							</section>
+							<section>
+								<!-- 5. PHARMACOLOGICAL PROPERTIES -->
+								<title value="5. PHARMACOLOGICAL PROPERTIES"/>
+								<code>
+									<coding>
+										<system
+											value="http://spor.ema.europa.eu/v1/example-sections"/>
+										<code value="7"/>
+										<display value="pharmaceutical properties"/>
+									</coding>
+								</code>
+								<section>
+									<!-- 5.1 Pharmacodynamic properties -->
+									<title value="5.1 Pharmacodynamic properties"/>
+									<code>
+										<coding>
+											<system
+												value="http://spor.ema.europa.eu/v1/example-sections"/>
+											<code value="8"/>
+											<display value="Pharmacodynamic properties"/>
+										</coding>
+									</code>
+									<text>
+										<status value="additional"/>
+										<div xmlns="http://www.w3.org/1999/xhtml">
+											<p>Pharmacotherapeutic group: Selective calcium
+												antagonists with primary vascular effect
+												-Dihydropyridine derivatives.</p>
+											<p>ATC code: C08C A13</p>
+											<br/>
+											<p>Mechanism of action</p>
+											<p>Lercanidipine is a calcium antagonist in the
+												dihydropyridine group and inhibits the
+												transmembranethe influx of calcium into the heart
+												muscle and smooth muscle.The mechanism of this
+												antihypertensive effect is based on a direct
+												relaxing effect onvascular smooth muscle leading to
+												reduced total peripheral resistance.</p>
+											<br/>
+											<p>Pharmacodynamic effects</p>
+											<p>Despite its short plasma pharmacokinetic half-life,
+												lercanidipine has a prolonged
+												durationantihypertensive effect due to its high
+												membrane distribution coefficient, and due to
+												highvascular selectivity, lercanidipine does not
+												have a negative inotropic effect.</p>
+											<br/>
+											<p>Since vasodilation induced by Zanidip occurs
+												gradually, acute hypotension with reflex
+												tachycardiararely observed in hypertensive
+												patients.</p>
+											<br/>
+											<p>As with other asymmetric 1,4-dihydropyridines, the
+												antihypertensive effect is due tolercanidipine
+												mainly its (S) -enantiomer.</p>
+											<br/>
+											<p>Clinical efficacy and safety</p>
+											<p>The clinical efficacy and safety of lercanidipine at
+												a dose of 10–20 mg once daily have been evaluated
+												indouble-blind, placebo-controlled clinical trials
+												(with 1,200 patients receiving lercanidipine and
+												603patients receiving placebo) and in
+												active-controlled and uncontrolled long-term
+												clinical trials of all3,676 hypertensive
+												patients.</p>
+											<br/>
+											<p>Most clinical trials have been performed in patients
+												with mild to moderate essential
+												hypertension(including elderly and diabetic
+												patients) who received lercanidipine alone or in
+												combination with ACEinhibitors, diuretics or
+												beta-blockers.</p>
+											<br/>
+											<p>In addition to the clinical studies conducted to
+												document the therapeutic indications, areit
+												conducted another small, uncontrolled but randomized
+												study of patients with severehypertension (mean ± SD
+												diastolic blood pressure of 114.5 ± 3.7 mm Hg) which
+												showed thatblood pressure was normalized in 40% of
+												the 25 patients with a daily dose of 20 mg and in
+												56%of 25 patients with two daily doses of 10 mg
+												Zanidip. In a double blind, randomized,
+												controlledstudy against placebo in patients with
+												isolated systolic hypertension Lerkanidipine reduced
+												itsystolic pressure from an average initial value of
+												172.6 + 5.6 mm Hg to 140.2 + 8.7 mm Hg.</p>
+											<br/>
+											<p>No clinical studies have been performed in the
+												pediatric population.</p>
+										</div>
+									</text>
+								</section>
+								<section>
+									<!-- 5.2 Pharmacokinetic properties -->
+									<title value="5.2 Pharmacokinetic properties"/>
+									<code>
+										<coding>
+											<system
+												value="http://spor.ema.europa.eu/v1/example-sections"/>
+											<code value="9"/>
+											<display value="Pharmacokinetic properties"/>
+										</coding>
+									</code>
+									<text>
+										<status value="additional"/>
+										<div xmlns="http://www.w3.org/1999/xhtml">
+											<p>Absorption</p>
+											<p>Zanidip is completely absorbed after oral
+												administration of 10-20 mg and maximum plasma
+												concentrationsat (+ SD) 3.30 + 2.09 ng / ml and 7.66
+												+ 5.90 ng / ml, respectively, approx. 1.5-3 hours
+												after dosing.</p>
+											<br/>
+											<p>The two enantiomers of lercanidipine have the same
+												plasma profile, time to maximum plasma concentration
+												is equaland maximum plasma concentration and AUC are
+												approx. 1.2 times higher for the (S) -enantiomer
+												andthe half-life of the two enantiomers is the same.
+												No in vivo has been observedinterconversion of
+												enantiomers.</p>
+											<br/>
+											<p>Due to the high first-pass metabolism, the absolute
+												bioavailability of oraladministered lercanidipine
+												about 10% in non-fasting patients, but it is reduced
+												to 1/3 when itgiven to healthy fasting
+												volunteers.</p>
+											<br/>
+											<p>The oral availability of lercanidipine quadruples
+												when Zanidip is taken up to 2 hours after a high fat
+												diet.meal. Zanidip should therefore be taken before
+												meals.</p>
+											<p>Distribution</p>
+											<p>The distribution from plasma to tissues and organs is
+												rapid and extensive. The degree of serum protein
+												binding exceeds 98%. As plasma protein levels are
+												reduced inpatients with severe hepatic or renal
+												impairment, the free fraction of the drug may
+												increase inthese.</p>
+											<br/>
+											<p>Biotransformation</p>
+											<p>Zanidip is extensively metabolised by CYP3A4; none of
+												the parent compound is found in urine or
+												faeces.Lercanidipine is mainly converted to inactive
+												metabolites and approx. 50% of the dose is excreted
+												inthe urine.</p>
+											<br/>
+											<p>In vitro experiments with human liver microsomes have
+												shown that lercanidipine inhibits to some
+												extentCYP3A4 and CYP2D6 at concentrations 160 and 40
+												times higher, respectively, than the maximumwas
+												obtained in plasma after a dose of 20 mg. In
+												addition, interaction studies in humans have shown
+												thatlercanidipine does not alter plasma levels of
+												midazolam, a typical substrate for CYP3A4,
+												ormetoprolol, a typical substrate for CYP2D6.
+												Therefore, at therapeutic doses of Zanidip will
+												notInhibition of the biotransformation of drugs
+												metabolised by CYP3A4 and CYP2D6 is expected.</p>
+											<br/>
+											<p>Elimination</p>
+											<p>Elimination occurs mainly through
+												biotransformation.The terminal mean elimination
+												half-life is estimated at 8-10 hours and theThe
+												therapeutic effect lasts for 24 hours due to the
+												high binding to lipid membranes. Noaccumulation of
+												Zanidip was seen by repeated administration.</p>
+											<br/>
+											<p>Linearity / non-linearity</p>
+											<p>Oral administration of Zanidip results in non-direct
+												plasma lercanidipine levelsproportional to the
+												dosage (non-linear kinetics). After 10, 20 or 40 mg
+												it was observedmaximum concentrations in the ratio
+												1: 3: 8 and the area under the curve for plasma
+												concentration versus timewas in the ratio 1: 4: 18,
+												indicating an increasing saturation of first-pass
+												metabolism.Bioavailability therefore increases as
+												the dose increases.</p>
+											<br/>
+											<p>Additional information regarding special
+												populations</p>
+											<p>In elderly patients and in patients with mild to
+												moderate renal or hepatic impairment, showsThe
+												pharmacokinetics of lercanidipine do not differ from
+												the general patient population. Patients
+												withseverely impaired renal function or
+												dialysis-dependent patients, show higher levels,
+												(approximately 70%) ofthe drug. In patients with
+												moderate to severe hepatic impairment, lercanidipine
+												will be systemicBioavailability is likely to
+												increase, as the preparation is usually extensively
+												metabolised in the liver.</p>
+										</div>
+									</text>
+								</section>
+								<section>
+									<!-- 5.3 Preclinical safety data -->
+									<title value="5.3 Preclinical safety data"/>
+									<code>
+										<coding>
+											<system
+												value="http://spor.ema.europa.eu/v1/example-sections"/>
+											<code value="10"/>
+											<display value="Preclinical safety data"/>
+										</coding>
+									</code>
+									<text>
+										<status value="additional"/>
+										<div xmlns="http://www.w3.org/1999/xhtml">
+											<p>Non-clinical data reveal no special hazard for humans
+												based on conventional studiessafety pharmacology,
+												repeated dose toxicity tests, genotoxicity,
+												carcinogenic potential andreproductive toxicity.</p>
+											<br/>
+											<p>Safety pharmacological data from animal experiments
+												have shown that there is no effect on itautonomic
+												nervous system, central nervous system or
+												gastrointestinal function in antihypertensive
+												doser.</p>
+											<br/>
+											<p>The most relevant effects observed in long-term
+												studies in rats and dogs were direct or
+												indirectrelated to known effects of high doses of
+												calcium antagonists, mainly reflected in excessive
+												pharmacodynamic activity.</p>
+											<br/>
+											<p>Lercanidipine shows no evidence of genotoxicity or
+												carcinogenic risk.Fertility and general reproductive
+												performance in rats were unaffected by treatment
+												with lercanidipine. There was no evidence of
+												teratogenic effect in rats and rabbits. In rats,
+												lercanidipine in ihigh doses, however, pre- and
+												post-implantation loss and delay in fetal
+												development.</p>
+											<br/>
+											<p>Lercanidipine hydrochloride given in high doses (12
+												mg / kg / day) during labor pains gave rise to
+												dystocia.Distribution of lercanidipine and / or its
+												metabolites in pregnant animals and their excretion
+												in human milkhas not been investigated.</p>
+											<br/>
+											<p>Metabolites have not been evaluated separately in
+												toxicity studies.</p>
+										</div>
+									</text>
+								</section>
+							</section>
+							<section>
+								<!-- 6. PHARMACEUTICAL PARTICULARS -->
+								<title value="6. PHARMACEUTICAL PARTICULARS"/>
+								<code>
+									<coding>
+										<system
+											value="http://spor.ema.europa.eu/v1/example-sections"/>
+										<code value="6"/>
+										<display value="PHARMACEUTICAL PARTICULARS"/>
+									</coding>
+								</code>
+								<section>
+									<!-- 6.1 List of excipients -->
+									<title value="6.1 List of excipients"/>
+									<code>
+										<coding>
+											<system
+												value="http://spor.ema.europa.eu/v1/example-sections"/>
+											<code value="61"/>
+											<display value="List of excipients"/>
+										</coding>
+									</code>
+									<text>
+										<status value="additional"/>
+										<div xmlns="http://www.w3.org/1999/xhtml">
+											<p>Tablet core:</p>
+											<p>Lactose monohydrate</p>
+											<p>Sodium glycolate starch</p>
+											<p>Povidone K30</p>
+											<p>Magnesium stearate</p>
+											<p>Cellulose, microcrystalline</p>
+											<br/>
+											<p>Film coating:</p>
+											<p>Hypromellose</p>
+											<p>Titanium dioxide (E171)</p>
+											<p>Macrogol 6000</p>
+											<p>Iron oxide (E172)</p>
+											<p>Talkum</p>
+										</div>
+									</text>
+								</section>
+								<section>
+									<!-- 6.2 Incompatibilities -->
+									<title value="6.2 Incompatibilities"/>
+									<code>
+										<coding>
+											<system
+												value="http://spor.ema.europa.eu/v1/example-sections"/>
+											<code value="62"/>
+											<display value="Incompatibilities"/>
+										</coding>
+									</code>
+									<text>
+										<status value="additional"/>
+										<div xmlns="http://www.w3.org/1999/xhtml">
+											<p>Not relevant</p>
+										</div>
+									</text>
+								</section>
+								<section>
+									<!-- 6.3 Durability -->
+									<title value="6.3 Durability"/>
+									<code>
+										<coding>
+											<system
+												value="http://spor.ema.europa.eu/v1/example-sections"/>
+											<code value="63"/>
+											<display value="Durability"/>
+										</coding>
+									</code>
+									<text>
+										<status value="additional"/>
+										<div xmlns="http://www.w3.org/1999/xhtml">
+											<p>3 years</p>
+										</div>
+									</text>
+								</section>
+								<section>
+									<!-- 6.4 Special precautions for storage -->
+									<title value="6.4 Special precautions for storage"/>
+									<code>
+										<coding>
+											<system
+												value="http://spor.ema.europa.eu/v1/example-sections"/>
+											<code value="64"/>
+											<display value="Special precautions for storage"/>
+										</coding>
+									</code>
+									<text>
+										<status value="additional"/>
+										<div xmlns="http://www.w3.org/1999/xhtml">
+											<p>Store in the original package in order to protect
+												from light.</p>
+										</div>
+									</text>
+								</section>
+								<section>
+									<!-- 6.5 Nature and contents of container -->
+									<title value="6.5 Nature and contents of container"/>
+									<code>
+										<coding>
+											<system
+												value="http://spor.ema.europa.eu/v1/example-sections"/>
+											<code value="65"/>
+											<display value="Nature and contents of container"/>
+										</coding>
+									</code>
+									<text>
+										<status value="additional"/>
+										<div xmlns="http://www.w3.org/1999/xhtml">
+											<p>PVC / aluminum blister board</p>
+											<p>Pack sizes: 28, 56 and 98 tablets*</p>
+											<p>* Not all pack sizes may be marketed.</p>
+										</div>
+									</text>
+								</section>
+								<section>
+									<!-- 6.6 Special precautions for disposal -->
+									<title value="6.6 Special precautions for disposal"/>
+									<code>
+										<coding>
+											<system
+												value="http://spor.ema.europa.eu/v1/example-sections"/>
+											<code value="66"/>
+											<display value="6.6 Special precautions for disposal"/>
+										</coding>
+									</code>
+									<text>
+										<status value="additional"/>
+										<div xmlns="http://www.w3.org/1999/xhtml">
+											<p>Any unused product or waste material should be
+												disposed of in accordance with local
+												requirements.</p>
+										</div>
+									</text>
+								</section>
+							</section>
+							<section>
+								<!-- 7. HOLDER OF THE MARKETING AUTHORIZATION -->
+								<title value="7. HOLDER OF THE MARKETING AUTHORIZATION"/>
+								<code>
+									<coding>
+										<system
+											value="http://spor.ema.europa.eu/v1/example-sections"/>
+										<code value="7"/>
+										<display value="HOLDER OF THE MARKETING AUTHORIZATION"/>
+									</coding>
+								</code>
+								<text>
+									<status value="additional"/>
+									<div xmlns="http://www.w3.org/1999/xhtml">
+										<p>Meda AS</p>
+										<p>PO Box 194</p>
+										<p>1371 Asker</p>
+									</div>
+								</text>
+							</section>
+							<section>
+								<!-- 8. MARKETING AUTHORIZATION NUMBER(S) -->
+								<title value="8. MARKETING AUTHORIZATION NUMBER(S)"/>
+								<code>
+									<coding>
+										<system
+											value="http://spor.ema.europa.eu/v1/example-sections"/>
+										<code value="8"/>
+										<display value="MARKETING AUTHORIZATION NUMBER(S)"/>
+									</coding>
+								</code>
+								<text>
+									<status value="additional"/>
+									<div xmlns="http://www.w3.org/1999/xhtml">
+										<p>98-6653</p>
+									</div>
+								</text>
+							</section>
+							<section>
+								<!-- 9. DATE OF FIRST MARKETING AUTHORIZATION / LAST RENEWAL -->
+								<title
+									value="9. DATE OF FIRST MARKETING AUTHORIZATION / LAST RENEWAL"/>
+								<code>
+									<coding>
+										<system
+											value="http://spor.ema.europa.eu/v1/example-sections"/>
+										<code value="9"/>
+										<display
+											value="DATE OF FIRST MARKETING AUTHORIZATION / LAST RENEWAL"
+										/>
+									</coding>
+								</code>
+								<text>
+									<status value="additional"/>
+									<div xmlns="http://www.w3.org/1999/xhtml">
+										<p>Date of first marketing authorization: 05 May 2000</p>
+										<p>Date of last renewal: July 3, 2008</p>
+									</div>
+								</text>
+							</section>
+							<section>
+								<!-- 10. UPDATE DATE -->
+								<title value="10. UPDATE DATE"/>
+								<code>
+									<coding>
+										<system
+											value="http://spor.ema.europa.eu/v1/example-sections"/>
+										<code value="10"/>
+										<display value="UPDATE DATE"/>
+									</coding>
+								</code>
+								<text>
+									<status value="additional"/>
+									<div xmlns="http://www.w3.org/1999/xhtml">
+										<p>02/14/2019</p>
+									</div>
+								</text>
+							</section>
+						</Composition>
+					</resource>
+				</entry>
+				<!-- an entry that is a list of PMS Product references -->
+				<entry>
+					<fullUrl value="urn:uuid:548506e8-130d-40c4-8979-6177c0a96a66"/>
+					<resource>
+						<List>
+							<!-- any id will do -->
+							<!--id value="${instance.bundle[n].listId}"/-->
+							<status value="current"/>
+							<mode value="working"/>
+							<entry>
+								<!-- Product 1 Zandip 10 mg-->
+								<item>
+									<reference value="MedicinalProductDefinition/Zandip10"/>
+									<display value="Zandip 10 mg tablets"/>
+								</item>
+							</entry>
+							<entry>
+								<!-- Product 2 Zandip 20 mg -->
+								<item>
+									<reference value="MedicinalProductDefinition/Zandip20"/>
+									<display value="Zandip 20 mg tablets"/>
+								</item>
+							</entry>
+						</List>
+					</resource>
+				</entry>
+			</Bundle>
+		</resource>
+		<request>
+			<method value="POST"/>
+			<url value="Bundle"/>
+		</request>
+	</entry>
+</Bundle>
